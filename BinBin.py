@@ -1,62 +1,38 @@
 import streamlit as st
+import time
 
-# CSS for heart shape
-heart_css = """
+# Thiết lập tiêu đề
+st.title("Một Lời Tỏ Tình")
+
+# Hiệu ứng nhấp nháy
+st.markdown("""
 <style>
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
 }
-
-.heart {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background: red;
-    transform: rotate(-45deg);
-    margin: 50px auto;
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
 }
-
-.heart:before,
-.heart:after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: red;
-    border-radius: 50%;
-}
-
-.heart:before {
-    top: -50px;
-    left: 0;
-}
-
-.heart:after {
-    left: 50px;
-    top: 0;
-}
-
-.text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 16px;
-    animation: blink 1s infinite;
+h2 {
+    color: #FF6347;  /* Màu đỏ */
 }
 </style>
-"""
+""", unsafe_allow_html=True)
 
-# HTML for heart and text
-heart_html = """
-<div class="heart">
-    <div class="text">ANH YÊU BIN</div>
-</div>
-"""
+# Nội dung tỏ tình
+st.markdown("<h2 class='blink'>Bin à, anh yêu em!</h2>", unsafe_allow_html=True)
+st.markdown("""
+<p style='font-size: 20px; color: #555;'>Anh muốn nói rằng em là ánh sáng trong cuộc đời anh.</p>
+<p style='font-size: 20px; color: #555;'>Em có muốn trở thành bạn gái của anh không?</p>
+""", unsafe_allow_html=True)
 
-# Streamlit app
-st.title("Anh Yêu Bin Lắm")
-st.markdown(heart_css, unsafe_allow_html=True)
-st.markdown(heart_html, unsafe_allow_html=True)
+# Nút bấm
+if st.button("Có, em yêu anh!"):
+    st.success("Yay! Anh rất hạnh phúc khi em đồng ý!")
+elif st.button("Xin lỗi, không phải lúc này."):
+    st.warning("Cái này vẫn là đồng ý mà khác màu thui bé iu    !")
+
+# Phần âm nhạc (nếu có)
+st.audio("sound/sound.mp3", format="audio/mp3", start_time=0)  # Thay đổi đường dẫn nếu cần
